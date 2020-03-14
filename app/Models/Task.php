@@ -64,17 +64,6 @@ class Task extends Model
     }
 
     /**
-     * Get task by Id
-     *
-     * @param $taskId
-     * @return mixed
-     */
-    public static function getTaskById($taskId)
-    {
-        return self::where('id', $taskId)->first();
-    }
-
-    /**
      * Get task list
      *
      * @param $request

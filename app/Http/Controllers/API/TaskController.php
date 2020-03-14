@@ -31,7 +31,7 @@ class TaskController extends Controller
      */
     public function update($taskId, TaskFormUpdateRequest $request)
     {
-        $task = Task::getTaskById($taskId);
+        $task = Task::find($taskId);
         return response()->json([
             'object' => $task->updateTask($task, $request)
         ], 200);
@@ -56,9 +56,9 @@ class TaskController extends Controller
      */
     public function updateStatusTask($taskId, TaskFormUpdateRequest $request)
     {
-        $task = Task::getTaskById($taskId);
+        $task = Task::find($taskId);
         return response()->json([
-            'object' => $task->update(['status' => $request->status])
+            'object' => $task->update(['status' => $request->status ? $request->status : $task->status])
         ], 200);
     }
 
@@ -69,9 +69,9 @@ class TaskController extends Controller
      */
     public function updateUsersTask($taskId, TaskFormUpdateRequest $request)
     {
-        $task = Task::getTaskById($taskId);
+        $task = Task::find($taskId);
         return response()->json([
-            'object' => $task->update(['user_id' => $request->user_id])
+            'object' => $task->update(['user_id' => $request->user_id ? $request->user_id : $task->user_id])
         ], 200);
     }
 
